@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Merchant Upload Portal
 
-## Getting Started
+A React application for updating merchant information individually or in bulk using an Excel spreadsheet.
 
-First, run the development server:
+## Features
 
+- Update a single merchant's details via form submission
+- Bulk update multiple merchants via Excel file upload
+- Excel template download for bulk updates
+- Data validation for both individual and bulk uploads
+- Preview data from uploaded Excel files
+
+## Technology Stack
+
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- React Hook Form with Yup validation
+- XLSX for Excel file handling
+- Axios for API communication
+- React Hot Toast for notifications
+
+## Setup
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd upload-portal
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+Create a `.env.local` file in the root directory with the following variables:
+```
+NEXT_PUBLIC_API_URL=<your-api-url>
+NEXT_PUBLIC_API_KEY=<your-api-key>
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Start the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-To learn more about Next.js, take a look at the following resources:
+## API Endpoints
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application communicates with the following API endpoints:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Single Merchant Update
+- **URL**: `{API_URL}/merchant/update/:merchantId`
+- **Method**: PUT
+- **Auth**: Bearer token (API Key)
+- **Body**:
+```json
+{
+  "contactPersonName": "",
+  "contactPersonEmail": "",
+  "contactPersonPhone": "",
+  "contactPersonRelation": "",
+  "incorporationDate": ""
+}
+```
 
-## Deploy on Vercel
+### Multiple Merchants Update
+- **URL**: `{API_URL}/merchant/update-multiple`
+- **Method**: POST
+- **Auth**: Bearer token (API Key)
+- **Body**: Excel file (multipart/form-data)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Excel Template Format
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The Excel file for bulk updates should contain the following columns:
+- merchantId
+- contactPersonName
+- contactPersonEmail
+- contactPersonPhone
+- contactPersonRelation
+- incorporationDate (YYYY-MM-DD format)
+
+## Build
+
+To build the application for production:
+```bash
+npm run build
+```
+
+## License
+
+[MIT](LICENSE)

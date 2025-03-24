@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { MerchantData, ApiResponse } from '../types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.example.com';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://apimocha.com/mportal/';
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY || '';
 
 const apiClient = axios.create({
