@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { toast } from 'react-hot-toast';
 import { MerchantData } from '../types';
 import { updateMerchant } from '../api/merchant';
 import ResponseDialog from './ResponseDialog';
@@ -87,7 +86,7 @@ export default function SingleUploadForm() {
           type: 'error',
         });
       }
-    } catch (error) {
+    } catch (err) {
       setDialogState({
         isOpen: true,
         title: 'Error',

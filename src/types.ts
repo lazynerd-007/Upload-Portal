@@ -9,8 +9,8 @@ export interface MerchantData {
 export interface ApiResponse {
   success: boolean;
   message: string;
-  data?: any;
+  data?: Record<string, unknown>;
   statusCode?: number;
-  errors?: Array<{ message: string; [key: string]: any }>;
+  errors?: Array<{ message: string; [key: string]: unknown }>;
   status?: number;
 } 

@@ -71,7 +71,8 @@ export default function ExcelTemplateDownload() {
       ws['!cols'] = columnWidths;
       
       // Style headers - make them bold and add background color
-      const range = { s: { r: 0, c: 0 }, e: { r: 0, c: headers.length - 1 } };
+      // Removing unused range variable
+      // const range = { s: { r: 0, c: 0 }, e: { r: 0, c: headers.length - 1 } };
       
       // Set header row height
       if (!ws['!rows']) ws['!rows'] = [];

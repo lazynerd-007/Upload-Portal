@@ -4,7 +4,6 @@ import { useState, useRef } from 'react';
 import { toast } from 'react-hot-toast';
 import * as XLSX from 'xlsx';
 import { updateMultipleMerchants } from '../api/merchant';
-import { MerchantData } from '../types';
 import ExcelTemplateDownload from './ExcelTemplateDownload';
 import ResponseDialog from './ResponseDialog';
 
@@ -27,6 +26,12 @@ interface ExcelRowData {
   contactPersonPhone?: string;
   contactPersonRelation?: string;
   incorporationDate?: string;
+}
+
+// Define worksheet cell type
+interface WorksheetCell {
+  v: string | number;
+  [key: string]: unknown;
 }
 
 export default function MultipleUploadForm() {
@@ -108,7 +113,7 @@ export default function MultipleUploadForm() {
         
         console.log('Extracted headers:', headers);
         
-        const jsonData = XLSX.utils.sheet_to_json<any>(worksheet, { 
+        const jsonData = XLSX.utils.sheet_to_json<Record<string, string | number>>(worksheet, { 
           header: headers,
           range: 1,
           raw: false,
@@ -137,7 +142,7 @@ export default function MultipleUploadForm() {
           'incorporationDate'
         ];
         
-        const normalizedData = jsonData.map((row: any) => {
+        const normalizedData = jsonData.map((row: Record<string, string | number>) => {
           const normalizedRow: ExcelRowData = {};
           
           expectedColumns.forEach(col => {
