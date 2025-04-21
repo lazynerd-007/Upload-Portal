@@ -10,4 +10,7 @@ export interface ApiResponse {
   success: boolean;
   message: string;
   data?: any;
+  statusCode?: number;
+  errors?: Array<{ message: string; [key: string]: any }>;
+  status?: number;
 } 

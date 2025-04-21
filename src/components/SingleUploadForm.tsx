@@ -27,6 +27,10 @@ type DialogState = {
   title: string;
   message: string;
   type: 'success' | 'error';
+  additionalAction?: {
+    label: string;
+    onClick: () => void;
+  };
 };
 
 export default function SingleUploadForm() {
@@ -68,8 +72,13 @@ export default function SingleUploadForm() {
           title: 'Update Successful',
           message: `Merchant ${merchantId} was successfully updated.`,
           type: 'success',
+          additionalAction: {
+            label: 'Update Another',
+            onClick: () => {
+              reset();
+            }
+          }
         });
-        reset();
       } else {
         setDialogState({
           isOpen: true,
@@ -216,6 +225,7 @@ export default function SingleUploadForm() {
         title={dialogState.title}
         message={dialogState.message}
         type={dialogState.type}
+        additionalAction={dialogState.additionalAction}
       />
     </>
   );
