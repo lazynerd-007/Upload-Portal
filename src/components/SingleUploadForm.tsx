@@ -86,7 +86,7 @@ export default function SingleUploadForm() {
           type: 'error',
         });
       }
-    } catch (err) {
+    } catch (_) {
       setDialogState({
         isOpen: true,
         title: 'Error',

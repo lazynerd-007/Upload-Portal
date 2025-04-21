@@ -28,12 +28,6 @@ interface ExcelRowData {
   incorporationDate?: string;
 }
 
-// Define worksheet cell type
-interface WorksheetCell {
-  v: string | number;
-  [key: string]: unknown;
-}
-
 export default function MultipleUploadForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [fileName, setFileName] = useState<string>('');
